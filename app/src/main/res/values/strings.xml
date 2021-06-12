@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">GEOFOTO</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="logout">Cerrar Sesión</string>
+
+    <string name="title_login">Iniciar Sesión</string>
+    <string name="title_registrarse">Registrarse</string>
+
+
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_registrarse">Registrarse</string>
+    <string name="btn_tomarFoto">TomarFoto</string>
+    <string name="btn_seleccionar_Imagen">Seleccionar Imagen</string>
+
+
+    <string name="msg_para_registrarse">¿No tienes cuenta? Registrate</string>
+
+    <string name="galeria">Galeria de Fotos</string>
+    <string name="tomarFoto">Tomar Foto</string>
+    <string name="title_activity_navigation_main">MainActivity</string>
+
+    <string name="title_inicio">Inicio</string>
+    <string name="title_galeria">Galeria</string>
+    <string name="title_ubicacion">Ubicación</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="otros_sensores">Sensor Light y Orientacion</string>
+
+</resources>

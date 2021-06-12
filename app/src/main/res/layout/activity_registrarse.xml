@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.RegistrarseActivity"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp"
+    >
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/title_registrarse"
+        android:textAlignment="center"
+        android:layout_marginTop="100dp"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id="@+id/inputNombres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="nombres"
+        android:padding="16dp"
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/inputApellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="apellidos"
+        android:padding="16dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/inputEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="email"
+        android:padding="16dp"
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/round_border"
+        android:ems="10"
+        android:hint="contraseña"
+        android:padding="16dp"
+        android:inputType="textPassword" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBarRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/round_bg"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/btn_registrarse"/>
+
+    <TextView
+        android:id="@+id/ir_a_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:text="¿Ya tienes cuenta? Iniciar Sesión"
+        android:textAlignment="center"
+        />
+
+</LinearLayout>
