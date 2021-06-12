@@ -1,0 +1,15 @@
+package com.example.progaleria.views;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import com.example.progaleria.R;
+
+public class MapearActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mapear);
+    }
+}
