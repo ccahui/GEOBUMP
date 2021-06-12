@@ -3,6 +3,7 @@ package com.example.progaleria.presenters;
 import android.util.Log;
 
 import com.example.progaleria.models.FotoGaleria;
+import com.example.progaleria.models.MarkerItemSimple;
 import com.example.progaleria.models.interfaces.ModelMapa;
 import com.example.progaleria.models.ModeloImpMapa;
 import com.example.progaleria.models.MarkerItem;
@@ -35,14 +36,21 @@ public class PresentadorImpMapa implements PresentadorViewMapa, PresentadorModel
     public void onSuccessFotos(List<FotoGaleria> fotos) {
 
         List<MarkerItem> markers = new ArrayList<>();
+        List<MarkerItemSimple> markersSimple = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         for(FotoGaleria foto: fotos){
                 double latitud = Double.parseDouble(foto.getLatitud());
                 double longitud = Double.parseDouble(foto.getLongitud());
                 LatLng ubicacion = new LatLng(latitud, longitud);
                 MarkerItem marker = new MarkerItem(ubicacion, foto.getUrl());
+                MarkerItemSimple markerSimple = new MarkerItemSimple(ubicacion);
                 markers.add(marker);
+                latLngs.add(ubicacion);
+                markersSimple.add(markerSimple);
         }
-        vista.showMarkersFotosMap(markers);
+        //vista.addMarcadoresFotos(markers);
+        vista.addMarcadoresSimples(markersSimple);
+        vista.addMapaDeCalor(latLngs);
         Log.i(TAG, "Se obtuvieron Exitosamente las fotos ");
     }
 

@@ -2,6 +2,7 @@ package com.example.progaleria.views.fragments.mapa;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.progaleria.R;
+import com.example.progaleria.models.MarkerItemSimple;
 import com.example.progaleria.models.MarkerManagerRenderer;
 import com.example.progaleria.models.MarkerItem;
 import com.example.progaleria.presenters.PresentadorImpMapa;
@@ -27,7 +29,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.heatmaps.Gradient;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.util.List;
 
@@ -35,8 +41,9 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback, Google
 
     private GoogleMap mMap;
     private ClusterManager<MarkerItem> mClusterManager;
-    private MarkerManagerRenderer mClusterManagerRenderer;
 
+    private MarkerManagerRenderer mClusterManagerRenderer;
+    private ClusterManager<MarkerItemSimple> mClusterManagerSimple;
     private PresentadorImpMapa presentador;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -84,9 +91,19 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback, Google
             }
         });
     }
-
     @Override
-    public void showMarkersFotosMap(List<MarkerItem> markers) {
+    public void addMapaDeCalor(List<LatLng> latLngs) {
+
+        // Create a heat map tile provider, passing it the latlngs of the police stations.
+        HeatmapTileProvider provider = new HeatmapTileProvider.Builder().radius(40).opacity(0.8)
+                .data(latLngs)
+                .build();
+
+        // Add a tile overlay to the map, using the heat map tile provider.
+        TileOverlay overlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
+    }
+    @Override
+    public void addMarcadoresFotos(List<MarkerItem> markers) {
         if(mClusterManager == null){
             mClusterManager = new ClusterManager<MarkerItem>(getActivity().getApplicationContext(), mMap);
         }
@@ -102,6 +119,26 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback, Google
         onMarkerItemListener();
         mClusterManager.cluster();
     }
+    @Override
+    public void addMarcadoresSimples(List<MarkerItemSimple> markers){
+
+        if(mClusterManager == null){
+            mClusterManagerSimple = new ClusterManager<MarkerItemSimple>(getActivity().getApplicationContext(), mMap);
+        }
+
+        // Point the map's listeners at the listeners implemented by the cluster
+        // manager.
+        mMap.setOnCameraIdleListener(mClusterManagerSimple);
+        mMap.setOnMarkerClickListener(mClusterManagerSimple);
+
+        // Add cluster items (markers) to the cluster manager.
+        for(MarkerItemSimple marker: markers) {
+            mClusterManagerSimple.addItem(marker);
+        }
+
+    }
+
+
 
     private void onMarkerItemListener(){
         mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<MarkerItem>() {
