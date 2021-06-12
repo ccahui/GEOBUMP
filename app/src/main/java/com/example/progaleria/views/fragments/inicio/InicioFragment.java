@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.progaleria.R;
+import com.example.progaleria.views.MapearActivity;
 import com.example.progaleria.views.MiCamara2Activity;
 import com.example.progaleria.views.SeleccionarFotoActivity;
 
@@ -18,6 +19,7 @@ public class InicioFragment extends Fragment implements  View.OnClickListener{
 
     private Button btnCamara2;
     private Button btnSeleccionarImagenDeGaleria;
+    private Button btnMapear;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class InicioFragment extends Fragment implements  View.OnClickListener{
         btnSeleccionarImagenDeGaleria = root.findViewById(R.id.btnSeleccioneFotoGaleria);
         btnSeleccionarImagenDeGaleria.setOnClickListener(this);
 
+        btnMapear = root.findViewById(R.id.btnMapear);
+        btnMapear.setOnClickListener(this);
+
         return root;
     }
     @Override
@@ -42,6 +47,9 @@ public class InicioFragment extends Fragment implements  View.OnClickListener{
             case R.id.btnSeleccioneFotoGaleria:
                 startActivitySeleccioneFotoGaleria();
                 break;
+            case R.id.btnMapear:
+                startActivityMapear();
+                break;
         }
     }
 
@@ -51,6 +59,10 @@ public class InicioFragment extends Fragment implements  View.OnClickListener{
     }
     public void startActivitySeleccioneFotoGaleria(){
         Intent intent = new Intent(getContext(), SeleccionarFotoActivity.class);
+        startActivity(intent);
+    }
+    public void startActivityMapear(){
+        Intent intent = new Intent(getContext(), MapearActivity.class);
         startActivity(intent);
     }
 
