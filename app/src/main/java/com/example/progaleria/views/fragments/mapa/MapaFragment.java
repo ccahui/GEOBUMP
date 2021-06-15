@@ -87,7 +87,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback, Google
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                presentador.obtenerFotos();
+                //presentador.obtenerFotos();
+                presentador.obtenerPosiciones();
             }
         });
     }

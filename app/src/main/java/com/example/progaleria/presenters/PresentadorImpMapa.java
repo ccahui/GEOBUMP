@@ -31,10 +31,14 @@ public class PresentadorImpMapa implements PresentadorViewMapa, PresentadorModel
         modelo.obtenerFotos();
         Log.i(TAG, "Obteniendo fotos ....");
     }
+    @Override
+    public void obtenerPosiciones() {
+        modelo.obtenerPosiciones();
+        Log.i(TAG, "Obteniendo fotos ....");
+    }
 
     @Override
     public void onSuccessFotos(List<FotoGaleria> fotos) {
-
         List<MarkerItem> markers = new ArrayList<>();
         List<MarkerItemSimple> markersSimple = new ArrayList<>();
         List<LatLng> latLngs = new ArrayList<>();
@@ -55,8 +59,18 @@ public class PresentadorImpMapa implements PresentadorViewMapa, PresentadorModel
     }
 
     @Override
+    public void onSuccessPosiciones(List<LatLng> latLngs) {
+        List<MarkerItemSimple> markersSimple = new ArrayList<>();
+        for(LatLng latLng: latLngs){
+            MarkerItemSimple markerSimple = new MarkerItemSimple(latLng);
+            markersSimple.add(markerSimple);
+        }
+        vista.addMarcadoresSimples(markersSimple);
+        vista.addMapaDeCalor(latLngs);
+    }
+
+    @Override
     public void onError(String mensaje) {
         vista.toastError(mensaje);
     }
-
 }
