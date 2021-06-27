@@ -32,6 +32,8 @@ public class InicioFragment extends Fragment implements  View.OnClickListener{
 
         btnSeleccionarImagenDeGaleria = root.findViewById(R.id.btnSeleccioneFotoGaleria);
         btnSeleccionarImagenDeGaleria.setOnClickListener(this);
+        // esto es para hacer invisible el boton
+        btnSeleccionarImagenDeGaleria.setVisibility(View.INVISIBLE);
 
         btnMapear = root.findViewById(R.id.btnMapear);
         btnMapear.setOnClickListener(this);
