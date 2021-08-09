@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.progaleria.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 //https://github.com/bumptech/glide
 public class GaleriaAdapter extends RecyclerView.Adapter<GaleriaAdapter.GaleriaviewHolder> {
@@ -44,17 +46,27 @@ public class GaleriaAdapter extends RecyclerView.Adapter<GaleriaAdapter.Galeriav
 
     @Override
     public void onBindViewHolder(@NonNull final GaleriaviewHolder holder, int position) {
+        Geocoder geocoder;
+        List<Address> direccion;
+        geocoder = new Geocoder(mContext, Locale.getDefault());
+        double latitude = Double.parseDouble(listaFotosGaleria.get(position).getLatitud());
+        double longitude = Double.parseDouble(listaFotosGaleria.get(position).getLongitud());
+        try {
+            direccion = geocoder.getFromLocation(latitude, longitude, 1);
+            String address = direccion.get(0).getAddressLine(0);
+            String lugar = address !=null ? address.toUpperCase() : "Desconocido";
+            holder.txtTitulo.setText(lugar);
+            holder.txtLatitud.setText("LATITUD: "+listaFotosGaleria.get(position).getLatitud());
+            holder.txtLongitud.setText("LONGITUD: "+listaFotosGaleria.get(position).getLongitud());
 
-        String lugar = listaFotosGaleria.get(position).getLugarDescripcion() !=null ? listaFotosGaleria.get(position).getLugarDescripcion().toUpperCase() : "Desconocido";
-        holder.txtTitulo.setText(lugar);
-        holder.txtLatitud.setText("LATITUD: "+listaFotosGaleria.get(position).getLatitud());
-        holder.txtLongitud.setText("LONGITUD: "+listaFotosGaleria.get(position).getLongitud());
-
-         Glide.with(mContext)
-                .load(listaFotosGaleria.get(position).getUrl())
-                .centerCrop()
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.imgFoto);
+            Glide.with(mContext)
+                    .load(listaFotosGaleria.get(position).getUrl())
+                    .centerCrop()
+                    .error(R.drawable.ic_launcher_background)
+                    .into(holder.imgFoto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
