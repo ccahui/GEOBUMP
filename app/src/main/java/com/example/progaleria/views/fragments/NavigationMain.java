@@ -1,13 +1,13 @@
 package com.example.progaleria.views.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.progaleria.R;
 import com.example.progaleria.views.LoginActivity;
-import com.example.progaleria.views.MiCamaraActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -19,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class NavigationMain extends AppCompatActivity {
 
+    private String URL_SITIO_WEB = "http://geoecommerce.infinityfreeapp.com/";
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class NavigationMain extends AppCompatActivity {
                 cerrarSesion();
                return (true);
             case R.id.camara:
-                startActivityCamara();
+                startActivitySitioWeb();
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
@@ -55,9 +56,11 @@ public class NavigationMain extends AppCompatActivity {
         finish();
     }
 
-    private void startActivityCamara(){
-            Intent intent = new Intent(getApplicationContext(), MiCamaraActivity.class);
-            startActivity(intent);
+    private void startActivitySitioWeb(){
+        String url = URL_SITIO_WEB;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     private void navigationButton(){

@@ -6,16 +6,6 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission
-        android:name="android.hardware.Camera"
-        android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.MapearActivity"></activity>
+        <activity android:name=".views.MapearActivity" />
         <activity android:name=".views.SeleccionarFotoActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,13 +24,10 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
             android:name=".views.fragments.NavigationMain"
             android:label="@string/title_activity_navigation_main" />
+
         <activity android:name=".views.RegistrarseActivity" />
         <activity android:name=".views.LoginActivity" />
         <activity android:name=".views.MiCamaraActivity" />
@@ -52,6 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -63,5 +53,14 @@
                 android:resource="@xml/provider_paths" />
         </provider>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.hardware.Camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
