@@ -75,7 +75,7 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
     private static final float ACELERACION_TOTAL_MAXIMA_ACEPTADA = 0.60f;
     private static final String TOAST_MENSAJE = "Deje de Mover el dispositivo";
 
-    private Toast message;
+   // private Toast message;
     private static final String TAG = "MovimientoCamara";
     private static final int CAMERAID = 0;
     private String cameraId = null;
@@ -141,8 +141,8 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
     }
 
     private void initToast(){
-        message = Toast.makeText(this, TOAST_MENSAJE, Toast.LENGTH_SHORT);
-        message.setGravity(Gravity.CENTER, 0, 0);
+        //message = Toast.makeText(this, TOAST_MENSAJE, Toast.LENGTH_SHORT);
+        //message.setGravity(Gravity.CENTER, 0, 0);
     }
     private void initProgressDialog(){
         progressDialog=new ProgressDialog(this);
@@ -190,7 +190,7 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
     @Override
     protected void onPause() {
         super.onPause();
-        message.cancel();
+       // message.cancel();
         unregisterListenerAcelerometro();
         unregisterListenerGPS();
 
@@ -226,7 +226,7 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
 
                         Uri foto = saveFoto(bytes);
                         showModal = true;
-                        message.cancel();
+                  //      message.cancel();
                         alertDialogPreviewImage(foto);
 
 
@@ -343,9 +343,9 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
     public void handleAceleracionTotal(float aceleracionTotal) {
         if(!showModal && !progressDialog.isShowing()) {
             if (aceleracionTotal >= ACELERACION_TOTAL_MAXIMA_ACEPTADA) {
-                message.show();
+         //       message.show();
             } else {
-                message.cancel();
+           //     message.cancel();
             }
         }
     }
@@ -353,7 +353,7 @@ public class MiCamara2Activity extends AppCompatActivity implements IDeteccionMo
     @Override
     public void onSuccess() {
         Log.i(TAG,"Foto Subida Exitosamente");
-        message.cancel();
+       // message.cancel();
         Toast.makeText(getApplicationContext(),"Foto subida exitosamente", Toast.LENGTH_SHORT).show();
     }
 
